@@ -1,1 +1,2 @@
 Test_Data/test_html.txt filter=lfs diff=lfs merge=lfs -text
+Train_Data/train_html.txt filter=lfs diff=lfs merge=lfs -text
