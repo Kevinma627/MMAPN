@@ -11,7 +11,7 @@ def main():
     parser = argparse.ArgumentParser(description="Test URLNet model")
 
     # Data arguments
-    parser.add_argument('--data_data_dir', type=str, default='Test_Data/test_all.txt', help="Location of data file")
+    parser.add_argument('--data_data_dir', type=str, default='Test_Data/test_url.txt', help="Location of data file")
     parser.add_argument('--data_max_len_words', type=int, default=200, help="Maximum length of URL in words")
     parser.add_argument('--data_max_len_chars', type=int, default=200, help="Maximum length of URL in characters")
     parser.add_argument('--data_max_len_subwords', type=int, default=20, help="Maximum length of word in subwords/characters")

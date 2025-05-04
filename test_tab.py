@@ -11,7 +11,7 @@ from sklearn.metrics import accuracy_score
 
 parser = argparse.ArgumentParser(description="Train TabNet model")
 
-parser.add_argument('--test_data_file', type=str, default='tab_test.csv', help='Test data file')
+parser.add_argument('--test_data_file', type=str, default='Test_Data/test_tab.csv', help='Test data file')
 parser.add_argument('--model_save_dir', type=str, default='Model/runs_tab', help="Where the model is saved")
 parser.add_argument('--model_name', type=str, default='MMAPN_tab', help="Name of the model")
 

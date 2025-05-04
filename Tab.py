@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 
 parser = argparse.ArgumentParser(description="Train TabNet model")
 
-parser.add_argument('--train_data_file', type=str, default='Train_Data/domain_data.csv', help='Train data file')
+parser.add_argument('--train_data_file', type=str, default='Train_Data/train_tab.csv', help='Train data file')
 parser.add_argument('--data_dev_pct', type=float, default=0.1, help="Percentage of data used for validation")
 parser.add_argument('--model_save_dir', type=str, default='Model/runs_tab', help="Where the model saves")
 parser.add_argument('--model_name', type=str, default='MMAPN_tab', help="Name of the model")
