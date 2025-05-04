@@ -5,7 +5,6 @@ Ensure this is being run in an environment with the correct dependency versions 
 '''
 import argparse
 import pandas as pd
-import numpy as np
 from pytorch_tabnet.tab_model import TabNetClassifier
 from sklearn.model_selection import train_test_split
 
@@ -30,7 +29,7 @@ clf = TabNetClassifier(device_name="cuda")
 clf.fit(
     X_train, Y_train,
     eval_set=[(X_val, y_val)],
-    eval_metric=["auc", "accuracy", "logloss", "balanced_accuracy"] # Last metric is used for earl stopping
+    eval_metric=["auc", "accuracy", "logloss", "balanced_accuracy"] # Last metric is used for early stopping
 )
 
 # Save the model

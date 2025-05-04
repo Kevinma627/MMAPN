@@ -2,10 +2,7 @@ import numpy as np
 import requests
 import re
 import tensorflow as tf
-from URLNet import URLNet
-from bisect import bisect_left
 from bs4 import BeautifulSoup as bs
-from keras._tf_keras.keras.utils import to_categorical
 from keras._tf_keras.keras.preprocessing.text import Tokenizer
 from keras._tf_keras.keras.preprocessing.sequence import pad_sequences
 

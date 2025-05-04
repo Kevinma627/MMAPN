@@ -1,5 +1,4 @@
 import argparse
-import numpy as np
 from tqdm import tqdm
 import tensorflow as tf
 from keras._tf_keras.keras.preprocessing.sequence import pad_sequences
@@ -12,13 +11,10 @@ def main():
     parser = argparse.ArgumentParser(description="Test HTMLNet model")
 
     # Data arguments
-    parser.add_argument('--data_data_dir', type=str, default='data/train_converted.txt', help="Location of data file")
+    parser.add_argument('--data_data_dir', type=str, default='Test_Data/test_html.txt', help="Location of data file")
     parser.add_argument('--data_max_len_words', type=int, default=200, help="Maximum length of URL in words")
     parser.add_argument('--data_max_len_chars', type=int, default=200, help="Maximum length of URL in characters")
     parser.add_argument('--data_max_len_subwords', type=int, default=20, help="Maximum length of word in subwords/characters")
-    parser.add_argument('--data_subword_dict_dir', type=str, default="Model/runs_html/subwords_dict.p", help="Directory of subword dictionary")
-    parser.add_argument('--data_word_dict_dir', type=str, default="Model/runs_html/chars_dict.p", help="Directory of word dictionary")
-    parser.add_argument('--data_char_dict_dir', type=str, default="Model/runs_html/words_dict.p", help="Directory of character dictionary")
 
     # Model arguments
     parser.add_argument('--model_emb_dim', type=int, default=100, help="Embedding dimension size")
@@ -56,12 +52,11 @@ def main():
     word_x = get_words(x, word_reverse_dict, 1, htmls)
 
     # Load dictionaries
-    ngram_dict = pickle.load(open(args.data_subword_dict_dir, "rb"))
+    ngram_dict = pickle.load(open(args.log_checkpoint_dir + "/subwords_dict.p", "rb"))
     print("Size of subword vocabulary (train): {}".format(len(ngram_dict)))
-    word_dict = pickle.load(open(args.data_word_dict_dir, "rb"))
+    word_dict = pickle.load(open(args.log_checkpoint_dir + "/words_dict.p", "rb"))
     print("Size of word vocabulary (train): {}".format(len(word_dict)))
-    ngrams_dict = ngram_dict
-    chars_dict = pickle.load(open(args.data_char_dict_dir, "rb"))
+    chars_dict = pickle.load(open(args.log_checkpoint_dir + "/chars_dict.p", "rb"))
     print("Size of character vocabulary (train): {}".format(len(chars_dict)))
 
     ngramed_id_x, worded_id_x = ngram_id_x_from_dict(word_x, args.data_max_len_subwords, ngram_dict, word_dict)
@@ -98,7 +93,7 @@ def main():
 
     # Restore the checkpoint
     checkpoint = tf.train.Checkpoint(model=cnn)
-    latest_checkpoint = tf.train.latest_checkpoint(args.log_checkpoint_dir)
+    latest_checkpoint = tf.train.latest_checkpoint(args.log_checkpoint_dir + "/checkpoints")
     if latest_checkpoint:
         checkpoint.restore(latest_checkpoint).expect_partial()
         print("Restored from {}".format(latest_checkpoint))

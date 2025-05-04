@@ -168,8 +168,7 @@ for domain in domains:
     # Fetch whois data for each domain
     whois_data = fetch_whois(domain)
     completed += 1
-
-    print(whois_data)
+    
     print(completed)
 
     '''

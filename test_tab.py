@@ -14,7 +14,6 @@ parser = argparse.ArgumentParser(description="Train TabNet model")
 parser.add_argument('--test_data_file', type=str, default='tab_test.csv', help='Test data file')
 parser.add_argument('--model_save_dir', type=str, default='Model/runs_tab', help="Where the model is saved")
 parser.add_argument('--model_name', type=str, default='MMAPN_tab', help="Name of the model")
-parser.add_argument('--output_file', type=str, default='test_results.txt', help='Test results file')
 
 args = parser.parse_args()
 
@@ -40,7 +39,7 @@ feature_importances = np.sum(np.abs(M_explain), axis=0)
 feature_importances = feature_importances / np.sum(feature_importances) # Normalize
 
 # Save results
-out_file = args.model_save_dir + "/" + args.output_file
+out_file = args.model_save_dir + "/test_results.txt"
 
 with open(out_file, 'w') as fout:
     fout.write("label\tpredict\tconfidence\tAccuracy: " + str(accuracy) +"\n")

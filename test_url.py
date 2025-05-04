@@ -1,5 +1,4 @@
 import argparse
-import numpy as np
 from tqdm import tqdm
 import tensorflow as tf
 from keras._tf_keras.keras.preprocessing.sequence import pad_sequences
@@ -12,26 +11,23 @@ def main():
     parser = argparse.ArgumentParser(description="Test URLNet model")
 
     # Data arguments
-    parser.add_argument('--data_data_dir', type=str, default='data/train_converted.txt', help="Location of data file")
+    parser.add_argument('--data_data_dir', type=str, default='Test_Data/test_all.txt', help="Location of data file")
     parser.add_argument('--data_max_len_words', type=int, default=200, help="Maximum length of URL in words")
     parser.add_argument('--data_max_len_chars', type=int, default=200, help="Maximum length of URL in characters")
     parser.add_argument('--data_max_len_subwords', type=int, default=20, help="Maximum length of word in subwords/characters")
-    parser.add_argument('--data_delimit_mode', type=int, default=0, help="0: special chars, 1: special chars + each char as word")
-    parser.add_argument('--data_subword_dict_dir', type=str, default="runs/1000_emb1_dlm0_run/subwords_dict.p", help="Directory of subword dictionary")
-    parser.add_argument('--data_word_dict_dir', type=str, default="runs/1000_emb1_dlm0_run/words_dict.p", help="Directory of word dictionary")
-    parser.add_argument('--data_char_dict_dir', type=str, default="runs/1000_emb1_dlm0_run/chars_dict.p", help="Directory of character dictionary")
+    parser.add_argument('--data_delimit_mode', type=int, default=1, help="0: special chars, 1: special chars + each char as word")
 
     # Model arguments
     parser.add_argument('--model_emb_dim', type=int, default=32, help="Embedding dimension size")
     parser.add_argument('--model_filter_sizes', type=str, default="3,4,5,6", help="Filter sizes of the convolution layer")
-    parser.add_argument('--model_emb_mode', type=int, default=1, help="1: charCNN, 2: wordCNN, etc.")
+    parser.add_argument('--model_emb_mode', type=int, default=3, help="1: charCNN, 2: wordCNN, etc.")
 
     # Test arguments
-    parser.add_argument('--test_batch_size', type=int, default=32, help="Batch size")
+    parser.add_argument('--test_batch_size', type=int, default=128, help="Batch size")
 
     # Log arguments
-    parser.add_argument('--log_output_dir', type=str, default="runs/1000_emb1_dlm0_run/", help="Output directory")
-    parser.add_argument('--log_checkpoint_dir', type=str, default="runs/1000_emb1_dlm0_run/checkpoints/", help="Checkpoint directory")
+    parser.add_argument('--log_output_dir', type=str, default="Model/runs_url", help="Output directory")
+    parser.add_argument('--log_checkpoint_dir', type=str, default="Model/runs_url", help="Checkpoint directory")
 
     args = parser.parse_args()
 
@@ -52,13 +48,13 @@ def main():
     word_x = get_words(x, word_reverse_dict, args.data_delimit_mode, urls)
 
     # Load dictionaries
-    ngram_dict = pickle.load(open(args.data_subword_dict_dir, "rb"))
+    ngram_dict = pickle.load(open(args.log_checkpoint_dir + "/subwords_dict.p", "rb"))
     print("Size of subword vocabulary (train): {}".format(len(ngram_dict)))
-    word_dict = pickle.load(open(args.data_word_dict_dir, "rb"))
+    word_dict = pickle.load(open(args.log_checkpoint_dir + "/words_dict.p", "rb"))
     print("Size of word vocabulary (train): {}".format(len(word_dict)))
-    ngrams_dict = ngram_dict
-    chars_dict = pickle.load(open(args.data_char_dict_dir, "rb"))
+    chars_dict = pickle.load(open(args.log_checkpoint_dir + "/chars_dict.p", "rb"))
     print("Size of character vocabulary (train): {}".format(len(chars_dict)))
+    ngrams_dict = ngram_dict
 
     ngramed_id_x, worded_id_x = ngram_id_x_from_dict(word_x, args.data_max_len_subwords, ngram_dict, word_dict)
     chared_id_x = char_id_x(urls, chars_dict, args.data_max_len_chars)
@@ -96,7 +92,7 @@ def main():
 
     # Restore the checkpoint
     checkpoint = tf.train.Checkpoint(model=cnn)
-    latest_checkpoint = tf.train.latest_checkpoint(args.log_checkpoint_dir)
+    latest_checkpoint = tf.train.latest_checkpoint(args.log_checkpoint_dir + "/checkpoints")
     if latest_checkpoint:
         checkpoint.restore(latest_checkpoint).expect_partial()
         print("Restored from {}".format(latest_checkpoint))

@@ -43,8 +43,6 @@ def main():
     # Data preparation
     urls, labels = read_data(args.data_data_dir)
 
-    urls, labels = urls[:10000], labels[:10000] # Training on only the first 10,000 URLs
-
     # Remove protocol/subdomain if necessary (increases uniqueness in data)
     # If URL starts with http not https that is still taken into account (http is not removed)
     for i in range(len(urls)):
