@@ -218,7 +218,7 @@ python3 test_url.py --data_data_dir <test_data_path> \
 Example using defaults:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-python3 test_url.py --data_data_dir Test_Data/test.txt \
+python3 test_url.py --data_data_dir Test_Data/test_url.txt \
 --log_checkpoint_dir Model/runs_url --log_output_dir Model/runs_url \
 --test_batch_size 128
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
