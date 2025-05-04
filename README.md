@@ -126,7 +126,7 @@ Examples:
 -1.0,13.221081451060916,-1,-1.0,-1,0,1,2.6,8070801,0
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The first 7 features are fetched through whois-api and the last 2 features are fetched through Openpagerank API.
+The first 7 features are fetched through Whois API and the last 2 features are fetched through Open Page Rank API.
 
 ## Training
 
@@ -399,8 +399,8 @@ python3 HTML_Fetcher.py --URL_file <url_data_file> --save_file <tab_data_csv>
 - Any missing or invalid data is substituted by a -1.
 - For every URL that is processed the number of processed URLs will print to the terminal.
 - Data is fetched through the following APIs:
-    - whois-api
-    - Openpagerank API
+    - Whois API
+    - Open Page Rank API
 
 ### Sample Train/Test Runs
 
@@ -421,3 +421,7 @@ The MMAPN.ipynb jupyter notebook file features a sample train and sample test ru
     - The code related to the HTMLNet model including train_html.py and test_html.py also uses this code as a guideline.
 - PyTorch TabNet by DreamQuark was the implementation used for the TabNet model ([https://github.com/dreamquark-ai/tabnet](https://github.com/dreamquark-ai/tabnet)).
 
+### APIs
+
+- Whois API ([https://rapidapi.com/HemKrishLabs/api/whois-api6](https://rapidapi.com/HemKrishLabs/api/whois-api6))
+- Open Page Rank ([https://www.domcop.com/openpagerank/](https://www.domcop.com/openpagerank/))
