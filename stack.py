@@ -224,6 +224,10 @@ with open(args.results_dir + "/Vote.txt", 'w') as file:
 
 # -----------------------------------------------------------------------------------------------------------------
 
+print("Accuracy Mean: " + str(accuracy_mean))
+print("Accuracy Vote: " + str(accuracy_vote))
+print("Accuracy Highest Confidence: " + str(accuracy_highConf))
+
 # Appends accuracies of all models and stacking methods to accuracies.txt
 url_acc, html_acc, tab_acc = accuracy_get()
 with open(args.results_dir + "/accuracies.txt", "a") as file:
