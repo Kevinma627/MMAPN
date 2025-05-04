@@ -143,7 +143,7 @@ python3 train_url.py --data_data_dir <train_data_path> --data_dev_pct 0.2 \
 Example using defaults:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-python3 train_url.py --data_data_dir Train_Data/train.txt --data_dev_pct 0.2 \
+python3 train_url.py --data_data_dir Train_Data/train_url.txt --data_dev_pct 0.2 \
 --train_nb_epochs 2 --train_batch_size 128 \
 --log_output_dir Model/runs_url
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
