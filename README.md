@@ -404,7 +404,7 @@ python3 HTML_Fetcher.py --URL_file <url_data_file> --save_file <tab_data_csv>
 
 ### Sample Train/Test Runs
 
-The MMAPN.ipynb jupyter notebook file features a sample train and sample test run for all 3 models. Here you can see what the terminal output of what these runs might look like.
+The MMAPN.ipynb jupyter notebook file features a sample train and sample test run for all 3 models. Here you can see what the terminal output of these runs might look like.
 
 ## References
 
