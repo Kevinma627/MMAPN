@@ -363,7 +363,7 @@ You can automatically test all 3 models and then run stack.py on the results by 
 
 This script calls the test script for all 3 models and stack.py with all default parameters (including filepaths and directories). You are welcome to change commands in the script to use custom parameters if needed.
 
-Remember that stack.py will still append accuracies to accuracies.txt.
+Remember that stack.py will still append accuracies to accuracies.txt
 
 ## Other
 
