@@ -14,7 +14,7 @@ def extract_domain(url):
 def fetch_whois(domain):
     url = "https://whois-api6.p.rapidapi.com/whois/api/v1/getData"
     payload = {"query": domain}
-    headers = {"x-rapidapi-key": "c349d92282msh62ed97dd1d91ae9p1cff6ajsn4d7a0e324335",
+    headers = {"x-rapidapi-key": "API KEY", # Replace with your own API key
 	"x-rapidapi-host": "whois-api6.p.rapidapi.com",
 	"Content-Type": "application/json"}
 
@@ -24,7 +24,7 @@ def fetch_whois(domain):
 # Fetches page rank data from openpagerank
 def fetch_rank(domains):
     url = "https://openpagerank.com/api/v1.0/getPageRank"
-    headers = {"API-OPR": "wgo8g8cogok8csg8o8w08sg40cckcc8s40o8kowg"}
+    headers = {"API-OPR": "API KEY"} # Replace with your own API Key
 
     payload = []
     for domain in domains:
