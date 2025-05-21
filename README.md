@@ -402,6 +402,13 @@ python3 HTML_Fetcher.py --URL_file <url_data_file> --save_file <tab_data_csv>
     - Whois API
     - Open Page Rank API
 
+**NOTE:** Ensure that you have replaced the "API KEY" placeholders with your own API keys on the following lines (17 and 27) before running the script.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ headers = {"x-rapidapi-key": "API KEY", # Replace with your own API key
+ headers = {"API-OPR": "API KEY"} # Replace with your own API Key
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 ### Sample Train/Test Runs
 
 The MMAPN.ipynb jupyter notebook file features a sample train and sample test run for all 3 models. Here you can see what the terminal output of these runs might look like.
